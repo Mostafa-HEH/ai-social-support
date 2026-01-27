@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import PersonalInformations from "./steps/PersonalInformations";
 import Situation from "./steps/Situation";
 import FamilyAndFinancial from "./steps/FamilyAndFinancial";
+import FormActions from "./steps/FormActions";
 
 const SupportForm = () => {
   const form = useForm<UserFormValues>({
@@ -24,6 +25,7 @@ const SupportForm = () => {
         <PersonalInformations />
         <FamilyAndFinancial />
         <Situation />
+        <FormActions />
       </FormProvider>
     </Stack>
   );

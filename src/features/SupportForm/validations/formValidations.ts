@@ -39,6 +39,23 @@ export const UserForm = z.object({
     })
     .min(0, "Monthly income cannot be negative"),
   housing_status: z.string().min(1, "Housing status is required"),
+
+  //! Step 3
+  current_financial_situation: z
+    .string()
+    .trim()
+    .min(30, "Please provide more details about your financial situation")
+    .max(1000, "Description is too long"),
+  employment_circumstances: z
+    .string()
+    .trim()
+    .min(30, "Please provide more details about your employment circumstances")
+    .max(1000, "Description is too long"),
+  reason_for_applying: z
+    .string()
+    .trim()
+    .min(20, "Please explain your reason for applying")
+    .max(1000, "Description is too long"),
 });
 
 export type UserFormValues = z.infer<typeof UserForm>;
