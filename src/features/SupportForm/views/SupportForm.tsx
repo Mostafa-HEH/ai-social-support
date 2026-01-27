@@ -1,13 +1,18 @@
-import { Button, Stack } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { Stack } from "@mui/material";
+import { FormProvider, useForm } from "react-hook-form";
 import { UserForm, type UserFormValues } from "../validations/formValidations";
 import { zodResolver } from "@hookform/resolvers/zod";
+import PersonalInformations from "./steps/PersonalInformations";
+import Situation from "./steps/Situation";
+import FamilyAndFinancial from "./steps/FamilyAndFinancial";
 
 const SupportForm = () => {
-  const { handleSubmit } = useForm<UserFormValues>({
+  const form = useForm<UserFormValues>({
     resolver: zodResolver(UserForm),
     mode: "all",
   });
+
+  const { handleSubmit } = form;
 
   const onSubmit = (data: UserFormValues) => {
     console.log(data);
@@ -15,7 +20,11 @@ const SupportForm = () => {
 
   return (
     <Stack component="form" onSubmit={handleSubmit(onSubmit)}>
-      <Button variant="contained">test</Button>
+      <FormProvider {...form}>
+        <PersonalInformations />
+        <FamilyAndFinancial />
+        <Situation />
+      </FormProvider>
     </Stack>
   );
 };
