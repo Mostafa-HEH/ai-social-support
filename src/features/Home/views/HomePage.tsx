@@ -1,5 +1,11 @@
+import { SupportForm } from "../../SupportForm";
+
 const HomePage = () => {
-  return <>Home page</>;
+  return (
+    <div>
+      <SupportForm />
+    </div>
+  );
 };
 
 export default HomePage;
