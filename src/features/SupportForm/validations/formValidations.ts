@@ -23,6 +23,22 @@ export const UserForm = z.object({
     .max(15, "Phone number is too long")
     .regex(/^[0-9+()\s-]+$/, "Invalid phone number"),
   email: z.string().trim().email("Invalid email address"),
+
+  //! Step 2
+  marital_status: z.string().min(1, "Marital status is required"),
+  dependents: z
+    .number({
+      error: "Number of dependents is required",
+    })
+    .min(0, "Dependents cannot be negative")
+    .max(20, "Dependents number is too high"),
+  employment_status: z.string().min(1, "Employment status is required"),
+  monthly_income: z
+    .number({
+      error: "Monthly income is required",
+    })
+    .min(0, "Monthly income cannot be negative"),
+  housing_status: z.string().min(1, "Housing status is required"),
 });
 
 export type UserFormValues = z.infer<typeof UserForm>;
