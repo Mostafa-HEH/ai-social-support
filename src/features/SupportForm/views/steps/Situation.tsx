@@ -1,15 +1,42 @@
 import { Controller, useFormContext } from "react-hook-form";
 import type { UserFormValues } from "../../validations/formValidations";
 import {
+  Button,
   FormControl,
   FormHelperText,
   FormLabel,
   Grid,
   TextField,
 } from "@mui/material";
+import { generateSuggestion } from "../../../../shared/api";
+import { typewriter } from "../../../../shared/services";
+import { buildFinancialSituationPrompt } from "../../services/prompts";
 
 const Situation = () => {
-  const { control } = useFormContext<UserFormValues>();
+  const { control, setValue, getValues } = useFormContext<UserFormValues>();
+
+  const generateAiText = async ({
+    field,
+    prompt,
+  }: {
+    field: keyof UserFormValues;
+    prompt: string;
+  }) => {
+    const text = await generateSuggestion(prompt);
+
+    setValue(field, "", {
+      shouldDirty: true,
+    });
+
+    await typewriter(text, (value) => {
+      setValue(field, value, {
+        shouldDirty: true,
+        shouldTouch: true,
+      });
+    });
+  };
+
+  const financialPropmt = buildFinancialSituationPrompt(getValues());
 
   return (
     <Grid container spacing={3}>
@@ -26,6 +53,16 @@ const Situation = () => {
                 rows={4}
                 placeholder="Describe your current financial situation"
               />
+              <Button
+                onClick={() =>
+                  generateAiText({
+                    field: "current_financial_situation",
+                    prompt: financialPropmt,
+                  })
+                }
+              >
+                Help Me
+              </Button>
               <FormHelperText>
                 {error?.message ||
                   "Please describe your current financial situation"}

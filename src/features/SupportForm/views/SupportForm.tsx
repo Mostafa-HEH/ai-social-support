@@ -12,7 +12,8 @@ import { useState } from "react";
 import { StepperContext } from "./steps/StepperContext";
 
 const SupportForm = () => {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(2);
+
   const form = useForm<UserFormValues>({
     resolver: zodResolver(UserForm),
     mode: "all",
