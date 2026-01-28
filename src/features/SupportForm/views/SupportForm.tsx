@@ -6,13 +6,12 @@ import {
   type UserFormValues,
 } from "../validations/formValidations";
 import { zodResolver } from "@hookform/resolvers/zod";
-import FormActions from "./steps/FormActions";
 import Steper from "./steps/Steper";
 import { useState } from "react";
 import { StepperContext } from "./steps/StepperContext";
 
 const SupportForm = () => {
-  const [activeStep, setActiveStep] = useState(2);
+  const [activeStep, setActiveStep] = useState(0);
 
   const form = useForm<UserFormValues>({
     resolver: zodResolver(UserForm),
@@ -31,7 +30,6 @@ const SupportForm = () => {
       <FormProvider {...form}>
         <StepperContext.Provider value={{ activeStep, setActiveStep }}>
           <Steper />
-          <FormActions />
         </StepperContext.Provider>
       </FormProvider>
     </Stack>

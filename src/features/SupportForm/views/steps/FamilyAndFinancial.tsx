@@ -19,8 +19,8 @@ const FamilyAndFinancial = () => {
   const { control } = useFormContext<UserFormValues>();
 
   return (
-    <Grid container spacing={3}>
-      <Grid size={{ xs: 12 }}>
+    <Grid container spacing={3} rowSpacing="20px" columnSpacing="16px">
+      <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="marital_status"
           control={control}
@@ -45,7 +45,7 @@ const FamilyAndFinancial = () => {
         />
       </Grid>
 
-      <Grid size={{ xs: 12 }}>
+      <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="dependents"
           control={control}
@@ -65,7 +65,7 @@ const FamilyAndFinancial = () => {
         />
       </Grid>
 
-      <Grid size={{ xs: 12 }}>
+      <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="employment_status"
           control={control}
@@ -92,7 +92,7 @@ const FamilyAndFinancial = () => {
         />
       </Grid>
 
-      <Grid size={{ xs: 12 }}>
+      <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="monthly_income"
           control={control}

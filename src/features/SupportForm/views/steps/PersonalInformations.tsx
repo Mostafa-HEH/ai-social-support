@@ -16,8 +16,8 @@ const PersonalInformations = () => {
   const { control } = useFormContext<UserFormValues>();
 
   return (
-    <Grid container spacing={3}>
-      <Grid size={{ xs: 12 }}>
+    <Grid container rowSpacing="20px" columnSpacing="16px">
+      <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="name"
           control={control}
@@ -33,7 +33,7 @@ const PersonalInformations = () => {
         />
       </Grid>
 
-      <Grid size={{ xs: 12 }}>
+      <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="national_id"
           control={control}
@@ -49,7 +49,7 @@ const PersonalInformations = () => {
         />
       </Grid>
 
-      <Grid size={{ xs: 12 }}>
+      <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="date_of_birth"
           control={control}
@@ -65,7 +65,7 @@ const PersonalInformations = () => {
         />
       </Grid>
 
-      <Grid size={{ xs: 12 }}>
+      <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="gender"
           control={control}
@@ -90,7 +90,7 @@ const PersonalInformations = () => {
         />
       </Grid>
 
-      <Grid size={{ xs: 12 }}>
+      <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="country"
           control={control}
@@ -113,7 +113,7 @@ const PersonalInformations = () => {
         />
       </Grid>
 
-      <Grid size={{ xs: 12 }}>
+      <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="state"
           control={control}
@@ -129,7 +129,7 @@ const PersonalInformations = () => {
         />
       </Grid>
 
-      <Grid size={{ xs: 12 }}>
+      <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="city"
           control={control}
@@ -145,19 +145,14 @@ const PersonalInformations = () => {
         />
       </Grid>
 
-      <Grid size={{ xs: 12 }}>
+      <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="address"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
               <FormLabel>Address</FormLabel>
-              <TextField
-                {...field}
-                multiline
-                rows={3}
-                placeholder="Enter your address"
-              />
+              <TextField {...field} placeholder="Enter your address" />
               <FormHelperText>
                 {error?.message || "Please enter your address"}
               </FormHelperText>
@@ -166,7 +161,7 @@ const PersonalInformations = () => {
         />
       </Grid>
 
-      <Grid size={{ xs: 12 }}>
+      <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="phone"
           control={control}
@@ -186,7 +181,7 @@ const PersonalInformations = () => {
         />
       </Grid>
 
-      <Grid size={{ xs: 12 }}>
+      <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="email"
           control={control}

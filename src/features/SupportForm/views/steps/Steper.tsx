@@ -1,23 +1,17 @@
-import { Button, Grid, Step, StepLabel, Stepper } from "@mui/material";
+import { Grid, Step, StepLabel, Stepper } from "@mui/material";
 import { FORM_STEPS } from "../../utils/steps";
 import { useStepper } from "./StepperContext";
+
+import styles from "../styles/Steper.module.scss";
+import FormActions from "./FormActions";
 
 const Steper = () => {
   const { activeStep, setActiveStep } = useStepper();
 
-  const changeStep = ({ variant }: { variant: "next" | "prev" }) => {
-    switch (variant) {
-      case "next":
-        setActiveStep((current) => current + 1);
-        break;
-      case "prev":
-        setActiveStep((current) => current - 1);
-        break;
-    }
-  };
+  const stepAsset = FORM_STEPS?.[activeStep];
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={32 / 8} className={styles.container}>
       <Grid size={{ xs: 12 }}>
         <Stepper activeStep={activeStep}>
           {FORM_STEPS.map((x, idx) => {
@@ -29,20 +23,14 @@ const Steper = () => {
           })}
         </Stepper>
       </Grid>
-      <Grid size={{ xs: 12 }}>{FORM_STEPS?.[activeStep]?.component}</Grid>
-      <Grid size={{ xs: 12 }}>
-        <Button
-          variant="outlined"
-          onClick={() => changeStep({ variant: "prev" })}
-        >
-          Previous
-        </Button>
-        <Button
-          variant="contained"
-          onClick={() => changeStep({ variant: "next" })}
-        >
-          Next
-        </Button>
+      <Grid container spacing={32 / 8} className={styles.form}>
+        <Grid size={{ xs: 12 }} className={styles.formHeader}>
+          {stepAsset?.label}
+        </Grid>
+        <Grid size={{ xs: 12 }}>{stepAsset?.component}</Grid>
+        <Grid size={{ xs: 12 }}>
+          <FormActions />
+        </Grid>
       </Grid>
     </Grid>
   );
