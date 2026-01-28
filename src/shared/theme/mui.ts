@@ -39,8 +39,12 @@ const muiTheme = createTheme({
     MuiFormLabel: {
       styleOverrides: {
         root: {
-          color: "var(--app-palette-text-primary)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 12,
           marginBottom: 12,
+          color: "var(--app-palette-text-primary)",
           fontWeight: 500,
 
           "&.Mui-focused": {
@@ -49,6 +53,7 @@ const muiTheme = createTheme({
         },
       },
     },
+
     MuiButton: {
       styleOverrides: {
         root: {
@@ -94,7 +99,6 @@ const muiTheme = createTheme({
             },
           },
         },
-
         {
           props: { variant: "outlined", color: "primary" },
           style: {
@@ -124,6 +128,31 @@ const muiTheme = createTheme({
               borderColor: "#E5E7EB",
               color: "#9CA3AF",
               boxShadow: "none",
+            },
+          },
+        },
+        {
+          props: { size: "small" },
+          style: {
+            minWidth: "unset",
+            minHeight: "unset",
+            padding: "2px 8px",
+            borderRadius: 8,
+            fontSize: 12,
+            fontWeight: 500,
+            lineHeight: 1.2,
+
+            background: "transparent",
+            boxShadow: "none",
+            color: "var(--app-palette-primary-main)",
+
+            "&:hover": {
+              background: "rgba(74, 58, 255, 0.08)",
+              boxShadow: "none",
+            },
+
+            "&:active": {
+              background: "rgba(74, 58, 255, 0.12)",
             },
           },
         },

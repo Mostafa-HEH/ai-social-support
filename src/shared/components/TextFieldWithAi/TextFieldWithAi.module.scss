@@ -1,0 +1,33 @@
+.label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.aiboxContainer {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #d9dbe9;
+  background-color: #fbfbfe;
+
+  & .title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--app-palette-text-secondary);
+  }
+
+  & .content {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  & .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+}

@@ -1,18 +1,20 @@
 import { Controller, useFormContext } from "react-hook-form";
 import type { UserFormValues } from "../../validations/formValidations";
-import {
-  Button,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  Grid,
-  TextField,
-} from "@mui/material";
+import { Grid } from "@mui/material";
 import { generateSuggestion } from "../../../../shared/api";
 import { typewriter } from "../../../../shared/services";
-import { buildFinancialSituationPrompt } from "../../services/prompts";
+import {
+  buildEmploymentCircumstancesPrompt,
+  buildFinancialSituationPrompt,
+  buildReasonForApplyingPrompt,
+} from "../../services/prompts";
+import { useState } from "react";
+import TextFieldWithAi from "../../../../shared/components/TextFieldWithAi/TextFieldWithAi";
 
 const Situation = () => {
+  const [aiPreview, setAiPreview] = useState<
+    Partial<Record<keyof UserFormValues, string>>
+  >({});
   const { control, setValue, getValues } = useFormContext<UserFormValues>();
 
   const generateAiText = async ({
@@ -24,19 +26,22 @@ const Situation = () => {
   }) => {
     const text = await generateSuggestion(prompt);
 
-    setValue(field, "", {
-      shouldDirty: true,
-    });
+    setAiPreview((prev) => ({
+      ...prev,
+      [field]: "",
+    }));
 
     await typewriter(text, (value) => {
-      setValue(field, value, {
-        shouldDirty: true,
-        shouldTouch: true,
-      });
+      setAiPreview((prev) => ({
+        ...prev,
+        [field]: value,
+      }));
     });
   };
 
-  const financialPropmt = buildFinancialSituationPrompt(getValues());
+  const financialPrompt = buildFinancialSituationPrompt(getValues());
+  const circumstancesPrompt = buildEmploymentCircumstancesPrompt(getValues());
+  const applayReason = buildReasonForApplyingPrompt(getValues());
 
   return (
     <Grid container spacing={3}>
@@ -44,30 +49,35 @@ const Situation = () => {
         <Controller
           name="current_financial_situation"
           control={control}
-          render={({ field, fieldState: { error } }) => (
-            <FormControl error={!!error}>
-              <FormLabel>Current Financial Situation</FormLabel>
-              <TextField
-                {...field}
-                multiline
-                rows={4}
-                placeholder="Describe your current financial situation"
-              />
-              <Button
-                onClick={() =>
-                  generateAiText({
-                    field: "current_financial_situation",
-                    prompt: financialPropmt,
-                  })
-                }
-              >
-                Help Me
-              </Button>
-              <FormHelperText>
-                {error?.message ||
-                  "Please describe your current financial situation"}
-              </FormHelperText>
-            </FormControl>
+          render={({ field, fieldState }) => (
+            <TextFieldWithAi
+              label="Current Financial Situation"
+              placeholder="Describe your current financial situation"
+              field={field}
+              error={fieldState.error?.message}
+              aiPreview={aiPreview[field.name]}
+              onGenerateAi={() =>
+                generateAiText({
+                  field: field.name,
+                  prompt: financialPrompt,
+                })
+              }
+              onAcceptAi={() => {
+                setValue(field.name, aiPreview[field.name]!, {
+                  shouldDirty: true,
+                });
+                setAiPreview((prev) => ({
+                  ...prev,
+                  [field.name]: undefined,
+                }));
+              }}
+              onDiscardAi={() =>
+                setAiPreview((prev) => ({
+                  ...prev,
+                  [field.name]: undefined,
+                }))
+              }
+            />
           )}
         />
       </Grid>
@@ -76,20 +86,35 @@ const Situation = () => {
         <Controller
           name="employment_circumstances"
           control={control}
-          render={({ field, fieldState: { error } }) => (
-            <FormControl error={!!error}>
-              <FormLabel>Employment Circumstances</FormLabel>
-              <TextField
-                {...field}
-                multiline
-                rows={4}
-                placeholder="Describe your employment circumstances"
-              />
-              <FormHelperText>
-                {error?.message ||
-                  "Please describe your employment circumstances"}
-              </FormHelperText>
-            </FormControl>
+          render={({ field, fieldState }) => (
+            <TextFieldWithAi
+              label="Employment Circumstances"
+              placeholder="Describe your Employment Circumstances"
+              field={field}
+              error={fieldState.error?.message}
+              aiPreview={aiPreview[field.name]}
+              onGenerateAi={() =>
+                generateAiText({
+                  field: field.name,
+                  prompt: circumstancesPrompt,
+                })
+              }
+              onAcceptAi={() => {
+                setValue(field.name, aiPreview[field.name]!, {
+                  shouldDirty: true,
+                });
+                setAiPreview((prev) => ({
+                  ...prev,
+                  [field.name]: undefined,
+                }));
+              }}
+              onDiscardAi={() =>
+                setAiPreview((prev) => ({
+                  ...prev,
+                  [field.name]: undefined,
+                }))
+              }
+            />
           )}
         />
       </Grid>
@@ -98,19 +123,35 @@ const Situation = () => {
         <Controller
           name="reason_for_applying"
           control={control}
-          render={({ field, fieldState: { error } }) => (
-            <FormControl error={!!error}>
-              <FormLabel>Reason for Applying</FormLabel>
-              <TextField
-                {...field}
-                multiline
-                rows={4}
-                placeholder="Explain why you are applying for support"
-              />
-              <FormHelperText>
-                {error?.message || "Please explain your reason for applying"}
-              </FormHelperText>
-            </FormControl>
+          render={({ field, fieldState }) => (
+            <TextFieldWithAi
+              label="Reason for Applying"
+              placeholder="Describe your Reason for Applying"
+              field={field}
+              error={fieldState.error?.message}
+              aiPreview={aiPreview[field.name]}
+              onGenerateAi={() =>
+                generateAiText({
+                  field: field.name,
+                  prompt: applayReason,
+                })
+              }
+              onAcceptAi={() => {
+                setValue(field.name, aiPreview[field.name]!, {
+                  shouldDirty: true,
+                });
+                setAiPreview((prev) => ({
+                  ...prev,
+                  [field.name]: undefined,
+                }));
+              }}
+              onDiscardAi={() =>
+                setAiPreview((prev) => ({
+                  ...prev,
+                  [field.name]: undefined,
+                }))
+              }
+            />
           )}
         />
       </Grid>
