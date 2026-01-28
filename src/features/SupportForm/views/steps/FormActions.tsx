@@ -5,7 +5,9 @@ const FormActions = () => {
     <Box>
       <Button variant="contained">Next</Button>
       <Button variant="contained">Back</Button>
-      <Button variant="contained">Submit</Button>
+      <Button variant="contained" type="submit">
+        Submit
+      </Button>
     </Box>
   );
 };

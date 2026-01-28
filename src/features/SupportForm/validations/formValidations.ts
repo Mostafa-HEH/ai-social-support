@@ -26,18 +26,13 @@ export const UserForm = z.object({
 
   //! Step 2
   marital_status: z.string().min(1, "Marital status is required"),
-  dependents: z
-    .number({
-      error: "Number of dependents is required",
-    })
-    .min(0, "Dependents cannot be negative")
-    .max(20, "Dependents number is too high"),
+  dependents: z.string({
+    error: "Number of dependents is required",
+  }),
   employment_status: z.string().min(1, "Employment status is required"),
-  monthly_income: z
-    .number({
-      error: "Monthly income is required",
-    })
-    .min(0, "Monthly income cannot be negative"),
+  monthly_income: z.string({
+    error: "Monthly income is required",
+  }),
   housing_status: z.string().min(1, "Housing status is required"),
 
   //! Step 3
@@ -59,3 +54,29 @@ export const UserForm = z.object({
 });
 
 export type UserFormValues = z.infer<typeof UserForm>;
+
+export const userFormDefaultValues: UserFormValues = {
+  // ! Step 1
+  name: "",
+  national_id: "",
+  date_of_birth: "",
+  gender: "",
+  country: null,
+  state: "",
+  city: "",
+  address: "",
+  phone: "",
+  email: "",
+
+  // ! Step 2
+  marital_status: "",
+  dependents: "",
+  employment_status: "",
+  monthly_income: "",
+  housing_status: "",
+
+  // ! Step 3
+  current_financial_situation: "",
+  employment_circumstances: "",
+  reason_for_applying: "",
+};
