@@ -8,8 +8,11 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import FormActions from "./steps/FormActions";
 import Steper from "./steps/Steper";
+import { useState } from "react";
+import { StepperContext } from "./steps/StepperContext";
 
 const SupportForm = () => {
+  const [activeStep, setActiveStep] = useState(1);
   const form = useForm<UserFormValues>({
     resolver: zodResolver(UserForm),
     mode: "all",
@@ -25,8 +28,10 @@ const SupportForm = () => {
   return (
     <Stack component="form" onSubmit={handleSubmit(onSubmit)}>
       <FormProvider {...form}>
-        <Steper />
-        <FormActions />
+        <StepperContext.Provider value={{ activeStep, setActiveStep }}>
+          <Steper />
+          <FormActions />
+        </StepperContext.Provider>
       </FormProvider>
     </Stack>
   );

@@ -1,9 +1,9 @@
 import { Button, Grid, Step, StepLabel, Stepper } from "@mui/material";
-import { useState } from "react";
 import { FORM_STEPS } from "../../utils/steps";
+import { useStepper } from "./StepperContext";
 
 const Steper = () => {
-  const [activeStep, setActiveStep] = useState(0);
+  const { activeStep, setActiveStep } = useStepper();
 
   const changeStep = ({ variant }: { variant: "next" | "prev" }) => {
     switch (variant) {
