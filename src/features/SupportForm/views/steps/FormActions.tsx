@@ -1,9 +1,11 @@
 import { Box, Button } from "@mui/material";
 import { useStepper } from "./StepperContext";
 import styles from "../styles/FormActions.module.scss";
+import { FORM_STEPS } from "../../utils/steps";
 
 const FormActions = () => {
-  const { setActiveStep } = useStepper();
+  const { setActiveStep, activeStep } = useStepper();
+  const lastStep = FORM_STEPS?.length - 1 === activeStep;
 
   const changeStep = ({ variant }: { variant: "next" | "prev" }) => {
     switch (variant) {
@@ -18,18 +20,27 @@ const FormActions = () => {
 
   return (
     <Box className={styles.container}>
-      <Button
-        variant="outlined"
-        onClick={() => changeStep({ variant: "prev" })}
-      >
-        Previous
-      </Button>
-      <Button
-        variant="contained"
-        onClick={() => changeStep({ variant: "next" })}
-      >
-        Next
-      </Button>
+      {activeStep !== 0 && (
+        <Button
+          variant="outlined"
+          onClick={() => changeStep({ variant: "prev" })}
+        >
+          Previous
+        </Button>
+      )}
+      {!lastStep && (
+        <Button
+          variant="contained"
+          onClick={() => changeStep({ variant: "next" })}
+        >
+          Next
+        </Button>
+      )}
+      {lastStep && (
+        <Button variant="contained" type="submit">
+          Submit
+        </Button>
+      )}
     </Box>
   );
 };

@@ -158,6 +158,30 @@ const muiTheme = createTheme({
         },
       ],
     },
+
+    MuiStepper: {
+      styleOverrides: {
+        root: {
+          boxSizing: "border-box",
+
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+
+          padding: 24,
+          gap: 16,
+
+          width: 698,
+          height: 79,
+
+          backgroundColor: "#F1F0FB",
+          border: "0.5px solid #EAE8FF",
+          boxShadow: "inset 0px -1.16667px 1.16667px rgba(150, 161, 172, 0.12)",
+          borderRadius: 16,
+        },
+      },
+    },
   },
 });
 

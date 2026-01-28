@@ -15,7 +15,8 @@ const Situation = () => {
   const [aiPreview, setAiPreview] = useState<
     Partial<Record<keyof UserFormValues, string>>
   >({});
-  const { control, setValue, getValues } = useFormContext<UserFormValues>();
+  const { control, setValue, getValues, trigger } =
+    useFormContext<UserFormValues>();
 
   const generateAiText = async ({
     field,
@@ -70,6 +71,7 @@ const Situation = () => {
                   ...prev,
                   [field.name]: undefined,
                 }));
+                trigger(field.name);
               }}
               onDiscardAi={() =>
                 setAiPreview((prev) => ({
@@ -107,6 +109,7 @@ const Situation = () => {
                   ...prev,
                   [field.name]: undefined,
                 }));
+                trigger(field.name);
               }}
               onDiscardAi={() =>
                 setAiPreview((prev) => ({
@@ -144,6 +147,7 @@ const Situation = () => {
                   ...prev,
                   [field.name]: undefined,
                 }));
+                trigger(field.name);
               }}
               onDiscardAi={() =>
                 setAiPreview((prev) => ({
