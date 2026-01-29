@@ -115,9 +115,7 @@ const PersonalInformations = () => {
                   <em>{t("form.gender.default")}</em>
                 </MenuItem>
                 {GENDER.map((g) => (
-                  <MenuItem key={g.id} value={g.id}>
-                    {g.label}
-                  </MenuItem>
+                  <MenuItem value={g.id}>{t(`gender.${g.id}`)}</MenuItem>
                 ))}
               </Select>
               <FormHelperText id="gender-helper">
@@ -138,7 +136,7 @@ const PersonalInformations = () => {
               <FormLabel>{t("form.country.label")}</FormLabel>
               <Autocomplete
                 options={COUNTRIES}
-                getOptionLabel={(option) => option.label}
+                getOptionLabel={(option) => t(`countries.${option.code}`)}
                 onChange={(_, value) => field.onChange(value)}
                 renderInput={(params) => (
                   <TextField

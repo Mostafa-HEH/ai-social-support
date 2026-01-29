@@ -172,5 +172,31 @@
       "discard": "Discard",
       "use": "Use"
     }
+  },
+
+  "gender": {
+    "male": "Male",
+    "female": "Female"
+  },
+  "countries": {
+    "AE": "United Arab Emirates",
+    "EG": "Egypt",
+    "SA": "Saudi Arabia"
+  },
+  "maritalStatus": {
+    "single": "Single",
+    "married": "Married"
+  },
+  "employmentStatus": {
+    "employed": "Employed",
+    "unemployed": "Unemployed",
+    "self_employed": "Self-employed",
+    "retired": "Retired",
+    "student": "Student"
+  },
+  "housingStatus": {
+    "owned": "Owned",
+    "rented": "Rented",
+    "family": "Living with family"
   }
 }

@@ -123,7 +123,7 @@ const getMuiTheme = (direction: "ltr" | "rtl") =>
           root: {
             padding: 24,
             gap: 16,
-            height: 79,
+            height: 38,
             backgroundColor: "#F1F0FB",
             border: "0.5px solid #EAE8FF",
             borderRadius: 16,

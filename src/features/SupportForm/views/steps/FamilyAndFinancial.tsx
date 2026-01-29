@@ -43,8 +43,8 @@ const FamilyAndFinancial = () => {
                   <em>{t("form.maritalStatus.default")}</em>
                 </MenuItem>
                 {MARITAL_STATUS.map((state) => (
-                  <MenuItem key={state.id} value={state.id}>
-                    {state.label}
+                  <MenuItem value={state.id}>
+                    {t(`maritalStatus.${state.id}`)}
                   </MenuItem>
                 ))}
               </Select>
@@ -107,8 +107,8 @@ const FamilyAndFinancial = () => {
                   <em>{t("form.employmentStatus.default")}</em>
                 </MenuItem>
                 {EMPLOYMENT_STATUS.map((status) => (
-                  <MenuItem key={status.id} value={status.id}>
-                    {status.label}
+                  <MenuItem value={status.id}>
+                    {t(`employmentStatus.${status.id}`)}
                   </MenuItem>
                 ))}
               </Select>
@@ -171,8 +171,8 @@ const FamilyAndFinancial = () => {
                   <em>{t("form.housingStatus.default")}</em>
                 </MenuItem>
                 {HOUSING_STATUS.map((status) => (
-                  <MenuItem key={status.id} value={status.id}>
-                    {status.label}
+                  <MenuItem value={status.id}>
+                    {t(`housingStatus.${status.id}`)}
                   </MenuItem>
                 ))}
               </Select>

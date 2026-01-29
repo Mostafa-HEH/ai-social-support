@@ -1,35 +1,29 @@
 export const GENDER = [
-  {
-    id: "male",
-    label: "Male",
-  },
-  {
-    id: "female",
-    label: "Female",
-  },
+  { id: "male" },
+  { id: "female" },
 ];
 
 export const COUNTRIES = [
-  { code: "AE", label: "United Arab Emirates" },
-  { code: "EG", label: "Egypt" },
-  { code: "SA", label: "Saudi Arabia" },
+  { code: "AE" },
+  { code: "EG" },
+  { code: "SA" },
 ];
 
 export const MARITAL_STATUS = [
-  { id: "single", label: "Single" },
-  { id: "married", label: "Married" },
+  { id: "single" },
+  { id: "married" },
 ];
 
 export const EMPLOYMENT_STATUS = [
-  { id: "employed", label: "Employed" },
-  { id: "unemployed", label: "Unemployed" },
-  { id: "self_employed", label: "Self-employed" },
-  { id: "retired", label: "Retired" },
-  { id: "student", label: "Student" },
+  { id: "employed" },
+  { id: "unemployed" },
+  { id: "self_employed" },
+  { id: "retired" },
+  { id: "student" },
 ];
 
 export const HOUSING_STATUS = [
-  { id: "owned", label: "Owned" },
-  { id: "rented", label: "Rented" },
-  { id: "family", label: "Living with family" },
+  { id: "owned" },
+  { id: "rented" },
+  { id: "family" },
 ];

@@ -172,5 +172,31 @@
       "discard": "تجاهل",
       "use": "استخدام"
     }
+  },
+
+  "gender": {
+    "male": "ذكر",
+    "female": "أنثى"
+  },
+  "countries": {
+    "AE": "الإمارات العربية المتحدة",
+    "EG": "مصر",
+    "SA": "المملكة العربية السعودية"
+  },
+  "maritalStatus": {
+    "single": "أعزب",
+    "married": "متزوج"
+  },
+  "employmentStatus": {
+    "employed": "موظف",
+    "unemployed": "عاطل عن العمل",
+    "self_employed": "عمل حر",
+    "retired": "متقاعد",
+    "student": "طالب"
+  },
+  "housingStatus": {
+    "owned": "سكن مملوك",
+    "rented": "سكن مستأجر",
+    "family": "الإقامة مع العائلة"
   }
 }
