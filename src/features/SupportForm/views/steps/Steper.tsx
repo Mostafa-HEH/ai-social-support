@@ -37,7 +37,7 @@ const Steper = () => {
       </Grid>
       <Grid container spacing={32 / 8} className={styles.form}>
         <Grid size={{ xs: 12 }} className={styles.formHeader}>
-          <Box component="span" className={styles.stepLabel}>
+          <Box component="h3" className={styles.stepLabel}>
             {t(stepAsset.label)}
           </Box>
         </Grid>
