@@ -35,38 +35,61 @@ const TextFieldWithAi = <TFieldValues extends FieldValues = FieldValues>({
 }: TextFieldWithAiProps<TFieldValues>) => {
   const { t } = useTranslation();
 
+  const inputId = field.name;
+  const helperId = `${field.name}-helper`;
+  const aiRegionId = `${field.name}-ai-region`;
+
   return (
     <FormControl error={!!error}>
       <Box className={styles.label}>
-        <FormLabel>{label}</FormLabel>
+        <FormLabel htmlFor={inputId}>{label}</FormLabel>
         {!aiPreview && (
-          <Button size="small" onClick={onGenerateAi}>
+          <Button
+            type="button"
+            size="small"
+            onClick={onGenerateAi}
+            aria-label={t("form.common.aiHelp")}
+          >
             {t("form.common.aiHelp")}
           </Button>
         )}
       </Box>
-
       <TextField
         {...field}
+        id={inputId}
         multiline
         rows={rows}
         placeholder={placeholder}
         error={!!error}
+        aria-describedby={helperId}
+        aria-invalid={!!error}
       />
-
-      <FormHelperText>{error}</FormHelperText>
-
+      <FormHelperText id={helperId}>{error}</FormHelperText>
       {aiPreview && (
-        <Box className={styles.aiboxContainer}>
+        <Box
+          id={aiRegionId}
+          className={styles.aiboxContainer}
+          role="region"
+          aria-live="polite"
+          aria-label={t("form.common.aiSuggestion")}
+        >
           <Box className={styles.title}>{t("form.common.aiSuggestion")}</Box>
-
           <Box className={styles.content}>{aiPreview}</Box>
-
           <Box className={styles.actions}>
-            <Button variant="outlined" size="small" onClick={onDiscardAi}>
+            <Button
+              type="button"
+              variant="outlined"
+              size="small"
+              onClick={onDiscardAi}
+            >
               {t("form.common.discard")}
             </Button>
-            <Button variant="contained" size="small" onClick={onAcceptAi}>
+            <Button
+              type="button"
+              variant="contained"
+              size="small"
+              onClick={onAcceptAi}
+            >
               {t("form.common.use")}
             </Button>
           </Box>

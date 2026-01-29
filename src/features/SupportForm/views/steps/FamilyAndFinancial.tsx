@@ -29,9 +29,16 @@ const FamilyAndFinancial = () => {
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>{t("form.maritalStatus.label")}</FormLabel>
-
-              <Select {...field} displayEmpty>
+              <FormLabel htmlFor="marital_status">
+                {t("form.maritalStatus.label")}
+              </FormLabel>
+              <Select
+                {...field}
+                id="marital_status"
+                displayEmpty
+                aria-describedby="marital-status-helper"
+                aria-invalid={!!error}
+              >
                 <MenuItem value="">
                   <em>{t("form.maritalStatus.default")}</em>
                 </MenuItem>
@@ -41,8 +48,7 @@ const FamilyAndFinancial = () => {
                   </MenuItem>
                 ))}
               </Select>
-
-              <FormHelperText>
+              <FormHelperText id="marital-status-helper">
                 {error?.message
                   ? t(error.message)
                   : t("form.maritalStatus.helper")}
@@ -59,15 +65,18 @@ const FamilyAndFinancial = () => {
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>{t("form.dependents.label")}</FormLabel>
-
+              <FormLabel htmlFor="dependents">
+                {t("form.dependents.label")}
+              </FormLabel>
               <TextField
                 {...field}
+                id="dependents"
                 type="number"
                 placeholder={t("form.dependents.placeholder")}
+                aria-describedby="dependents-helper"
+                aria-invalid={!!error}
               />
-
-              <FormHelperText>
+              <FormHelperText id="dependents-helper">
                 {error?.message
                   ? t(error.message)
                   : t("form.dependents.helper")}
@@ -84,9 +93,16 @@ const FamilyAndFinancial = () => {
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>{t("form.employmentStatus.label")}</FormLabel>
-
-              <Select {...field} displayEmpty>
+              <FormLabel htmlFor="employment_status">
+                {t("form.employmentStatus.label")}
+              </FormLabel>
+              <Select
+                {...field}
+                id="employment_status"
+                displayEmpty
+                aria-describedby="employment-status-helper"
+                aria-invalid={!!error}
+              >
                 <MenuItem value="">
                   <em>{t("form.employmentStatus.default")}</em>
                 </MenuItem>
@@ -96,8 +112,7 @@ const FamilyAndFinancial = () => {
                   </MenuItem>
                 ))}
               </Select>
-
-              <FormHelperText>
+              <FormHelperText id="employment-status-helper">
                 {error?.message
                   ? t(error.message)
                   : t("form.employmentStatus.helper")}
@@ -114,15 +129,18 @@ const FamilyAndFinancial = () => {
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>{t("form.monthlyIncome.label")}</FormLabel>
-
+              <FormLabel htmlFor="monthly_income">
+                {t("form.monthlyIncome.label")}
+              </FormLabel>
               <TextField
                 {...field}
+                id="monthly_income"
                 type="number"
                 placeholder={t("form.monthlyIncome.placeholder")}
+                aria-describedby="monthly-income-helper"
+                aria-invalid={!!error}
               />
-
-              <FormHelperText>
+              <FormHelperText id="monthly-income-helper">
                 {error?.message
                   ? t(error.message)
                   : t("form.monthlyIncome.helper")}
@@ -139,9 +157,16 @@ const FamilyAndFinancial = () => {
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>{t("form.housingStatus.label")}</FormLabel>
-
-              <Select {...field} displayEmpty>
+              <FormLabel htmlFor="housing_status">
+                {t("form.housingStatus.label")}
+              </FormLabel>
+              <Select
+                {...field}
+                id="housing_status"
+                displayEmpty
+                aria-describedby="housing-status-helper"
+                aria-invalid={!!error}
+              >
                 <MenuItem value="">
                   <em>{t("form.housingStatus.default")}</em>
                 </MenuItem>
@@ -151,8 +176,7 @@ const FamilyAndFinancial = () => {
                   </MenuItem>
                 ))}
               </Select>
-
-              <FormHelperText>
+              <FormHelperText id="housing-status-helper">
                 {error?.message
                   ? t(error.message)
                   : t("form.housingStatus.helper")}

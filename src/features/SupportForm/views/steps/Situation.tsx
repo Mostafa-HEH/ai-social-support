@@ -47,7 +47,12 @@ const Situation = () => {
   const applayReason = buildReasonForApplyingPrompt(getValues());
 
   return (
-    <Grid container spacing={3}>
+    <Grid
+      container
+      spacing={3}
+      role="region"
+      aria-label={t("form.situationSection")}
+    >
       <Grid size={{ xs: 12 }}>
         <Controller
           name="current_financial_situation"

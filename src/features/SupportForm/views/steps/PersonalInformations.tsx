@@ -26,14 +26,15 @@ const PersonalInformations = () => {
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>{t("form.fullName.label")}</FormLabel>
-
+              <FormLabel htmlFor="name">{t("form.fullName.label")}</FormLabel>
               <TextField
                 {...field}
+                id="name"
                 placeholder={t("form.fullName.placeholder")}
+                aria-describedby="name-helper"
+                aria-invalid={!!error}
               />
-
-              <FormHelperText>
+              <FormHelperText id="name-helper">
                 {error?.message ? t(error.message) : t("form.fullName.helper")}
               </FormHelperText>
             </FormControl>
@@ -48,14 +49,17 @@ const PersonalInformations = () => {
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>{t("form.nationalId.label")}</FormLabel>
-
+              <FormLabel htmlFor="national_id">
+                {t("form.nationalId.label")}
+              </FormLabel>
               <TextField
                 {...field}
+                id="national_id"
                 placeholder={t("form.nationalId.placeholder")}
+                aria-describedby="national-id-helper"
+                aria-invalid={!!error}
               />
-
-              <FormHelperText>
+              <FormHelperText id="national-id-helper">
                 {error?.message
                   ? t(error.message)
                   : t("form.nationalId.helper")}
@@ -72,11 +76,17 @@ const PersonalInformations = () => {
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>{t("form.dateOfBirth.label")}</FormLabel>
-
-              <TextField {...field} type="date" />
-
-              <FormHelperText>
+              <FormLabel htmlFor="date_of_birth">
+                {t("form.dateOfBirth.label")}
+              </FormLabel>
+              <TextField
+                {...field}
+                id="date_of_birth"
+                type="date"
+                aria-describedby="dob-helper"
+                aria-invalid={!!error}
+              />
+              <FormHelperText id="dob-helper">
                 {error?.message
                   ? t(error.message)
                   : t("form.dateOfBirth.helper")}
@@ -93,9 +103,14 @@ const PersonalInformations = () => {
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>{t("form.gender.label")}</FormLabel>
-
-              <Select {...field} displayEmpty>
+              <FormLabel htmlFor="gender">{t("form.gender.label")}</FormLabel>
+              <Select
+                {...field}
+                id="gender"
+                displayEmpty
+                aria-describedby="gender-helper"
+                aria-invalid={!!error}
+              >
                 <MenuItem value="">
                   <em>{t("form.gender.default")}</em>
                 </MenuItem>
@@ -105,8 +120,7 @@ const PersonalInformations = () => {
                   </MenuItem>
                 ))}
               </Select>
-
-              <FormHelperText>
+              <FormHelperText id="gender-helper">
                 {error?.message ? t(error.message) : t("form.gender.helper")}
               </FormHelperText>
             </FormControl>
@@ -122,7 +136,6 @@ const PersonalInformations = () => {
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
               <FormLabel>{t("form.country.label")}</FormLabel>
-
               <Autocomplete
                 options={COUNTRIES}
                 getOptionLabel={(option) => option.label}
@@ -131,11 +144,12 @@ const PersonalInformations = () => {
                   <TextField
                     {...params}
                     placeholder={t("form.country.placeholder")}
+                    aria-describedby="country-helper"
+                    aria-invalid={!!error}
                   />
                 )}
               />
-
-              <FormHelperText>
+              <FormHelperText id="country-helper">
                 {error?.message ? t(error.message) : t("form.country.helper")}
               </FormHelperText>
             </FormControl>
@@ -150,11 +164,15 @@ const PersonalInformations = () => {
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>{t("form.state.label")}</FormLabel>
-
-              <TextField {...field} placeholder={t("form.state.placeholder")} />
-
-              <FormHelperText>
+              <FormLabel htmlFor="state">{t("form.state.label")}</FormLabel>
+              <TextField
+                {...field}
+                id="state"
+                placeholder={t("form.state.placeholder")}
+                aria-describedby="state-helper"
+                aria-invalid={!!error}
+              />
+              <FormHelperText id="state-helper">
                 {error?.message ? t(error.message) : t("form.state.helper")}
               </FormHelperText>
             </FormControl>
@@ -169,11 +187,15 @@ const PersonalInformations = () => {
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>{t("form.city.label")}</FormLabel>
-
-              <TextField {...field} placeholder={t("form.city.placeholder")} />
-
-              <FormHelperText>
+              <FormLabel htmlFor="city">{t("form.city.label")}</FormLabel>
+              <TextField
+                {...field}
+                id="city"
+                placeholder={t("form.city.placeholder")}
+                aria-describedby="city-helper"
+                aria-invalid={!!error}
+              />
+              <FormHelperText id="city-helper">
                 {error?.message ? t(error.message) : t("form.city.helper")}
               </FormHelperText>
             </FormControl>
@@ -188,14 +210,15 @@ const PersonalInformations = () => {
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>{t("form.address.label")}</FormLabel>
-
+              <FormLabel htmlFor="address">{t("form.address.label")}</FormLabel>
               <TextField
                 {...field}
+                id="address"
                 placeholder={t("form.address.placeholder")}
+                aria-describedby="address-helper"
+                aria-invalid={!!error}
               />
-
-              <FormHelperText>
+              <FormHelperText id="address-helper">
                 {error?.message ? t(error.message) : t("form.address.helper")}
               </FormHelperText>
             </FormControl>
@@ -210,15 +233,16 @@ const PersonalInformations = () => {
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>{t("form.phone.label")}</FormLabel>
-
+              <FormLabel htmlFor="phone">{t("form.phone.label")}</FormLabel>
               <TextField
                 {...field}
+                id="phone"
                 inputMode="tel"
                 placeholder={t("form.phone.placeholder")}
+                aria-describedby="phone-helper"
+                aria-invalid={!!error}
               />
-
-              <FormHelperText>
+              <FormHelperText id="phone-helper">
                 {error?.message ? t(error.message) : t("form.phone.helper")}
               </FormHelperText>
             </FormControl>
@@ -233,15 +257,16 @@ const PersonalInformations = () => {
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>{t("form.email.label")}</FormLabel>
-
+              <FormLabel htmlFor="email">{t("form.email.label")}</FormLabel>
               <TextField
                 {...field}
+                id="email"
                 type="email"
                 placeholder={t("form.email.placeholder")}
+                aria-describedby="email-helper"
+                aria-invalid={!!error}
               />
-
-              <FormHelperText>
+              <FormHelperText id="email-helper">
                 {error?.message ? t(error.message) : t("form.email.helper")}
               </FormHelperText>
             </FormControl>

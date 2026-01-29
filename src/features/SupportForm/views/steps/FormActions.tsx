@@ -21,25 +21,39 @@ const FormActions = () => {
   };
 
   return (
-    <Box className={styles.container}>
+    <Box
+      className={styles.container}
+      role="navigation"
+      aria-label={t("common.formNavigation")}
+    >
       {activeStep !== 0 && (
         <Button
+          type="button"
           variant="outlined"
           onClick={() => changeStep({ variant: "prev" })}
+          aria-label={t("common.previous")}
         >
           {t("common.previous")}
         </Button>
       )}
+
       {!lastStep && (
         <Button
+          type="button"
           variant="contained"
           onClick={() => changeStep({ variant: "next" })}
+          aria-label={t("common.next")}
         >
           {t("common.next")}
         </Button>
       )}
+
       {lastStep && (
-        <Button variant="contained" type="submit">
+        <Button
+          type="submit"
+          variant="contained"
+          aria-label={t("common.submit")}
+        >
           {t("common.submit")}
         </Button>
       )}
