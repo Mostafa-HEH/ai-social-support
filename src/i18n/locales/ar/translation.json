@@ -1,0 +1,11 @@
+{
+  "common": {
+    "next": "التالي",
+    "previous": "السابق",
+    "submit": "إرسال"
+  },
+  "form": {
+    "currentFinancialSituation": "الوضع المالي الحالي",
+    "aiHelp": "مساعدة ذكية"
+  }
+}

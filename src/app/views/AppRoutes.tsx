@@ -3,18 +3,29 @@ import RootLayout from "./RootLayout";
 import { HomePage } from "../../features/Home";
 import { ROUTES } from "../utils/constants";
 import { ThemeProvider } from "@mui/material";
-import { muiTheme } from "../../shared/theme";
+import "../../i18n";
+import getMuiTheme from "../../shared/theme/mui";
+import { CacheProvider } from "@emotion/react";
+import { ltrCache, rtlCache } from "../../shared/theme";
+import { useTranslation } from "react-i18next";
 
 const AppRoutes = () => {
+  const { i18n } = useTranslation();
+
+  const isRTL = i18n.language === "ar";
+  const theme = getMuiTheme(isRTL ? "rtl" : "ltr");
+
   return (
     <BrowserRouter>
-      <ThemeProvider theme={muiTheme}>
-        <Routes>
-          <Route path={ROUTES.HOME} element={<RootLayout />}>
-            <Route index element={<HomePage />} />
-          </Route>
-        </Routes>
-      </ThemeProvider>
+      <CacheProvider value={isRTL ? rtlCache : ltrCache}>
+        <ThemeProvider theme={theme}>
+          <Routes>
+            <Route path={ROUTES.HOME} element={<RootLayout />}>
+              <Route index element={<HomePage />} />
+            </Route>
+          </Routes>
+        </ThemeProvider>
+      </CacheProvider>
     </BrowserRouter>
   );
 };

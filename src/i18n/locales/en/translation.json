@@ -1,0 +1,11 @@
+{
+  "common": {
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit"
+  },
+  "form": {
+    "currentFinancialSituation": "Current Financial Situation",
+    "aiHelp": "AI Help"
+  }
+}

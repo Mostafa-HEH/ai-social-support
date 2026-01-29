@@ -2,8 +2,10 @@ import { Box, Button } from "@mui/material";
 import { useStepper } from "./StepperContext";
 import styles from "../styles/FormActions.module.scss";
 import { FORM_STEPS } from "../../utils/steps";
+import { useTranslation } from "react-i18next";
 
 const FormActions = () => {
+  const { t } = useTranslation();
   const { setActiveStep, activeStep } = useStepper();
   const lastStep = FORM_STEPS?.length - 1 === activeStep;
 
@@ -25,7 +27,7 @@ const FormActions = () => {
           variant="outlined"
           onClick={() => changeStep({ variant: "prev" })}
         >
-          Previous
+          {t("common.previous")}
         </Button>
       )}
       {!lastStep && (

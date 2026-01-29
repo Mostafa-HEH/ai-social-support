@@ -1,0 +1,15 @@
+.langSelect {
+  min-width: 90px;
+
+  :global(.MuiOutlinedInput-root) {
+    height: 32px;
+    border-radius: 8px;
+    font-size: 13px;
+  }
+
+  :global(.MuiSelect-select) {
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+  }
+}
