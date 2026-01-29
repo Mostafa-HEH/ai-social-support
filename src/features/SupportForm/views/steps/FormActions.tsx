@@ -35,12 +35,12 @@ const FormActions = () => {
           variant="contained"
           onClick={() => changeStep({ variant: "next" })}
         >
-          Next
+          {t("common.next")}
         </Button>
       )}
       {lastStep && (
         <Button variant="contained" type="submit">
-          Submit
+          {t("common.submit")}
         </Button>
       )}
     </Box>

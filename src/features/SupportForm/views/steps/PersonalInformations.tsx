@@ -11,70 +11,93 @@ import {
 import { Controller, useFormContext } from "react-hook-form";
 import type { UserFormValues } from "../../validations/formValidations";
 import { COUNTRIES, GENDER } from "../../utils/consts";
+import { useTranslation } from "react-i18next";
 
 const PersonalInformations = () => {
+  const { t } = useTranslation();
   const { control } = useFormContext<UserFormValues>();
 
   return (
     <Grid container rowSpacing="20px" columnSpacing="16px">
+      {/* Full Name */}
       <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="name"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>Full Name</FormLabel>
-              <TextField {...field} placeholder="Enter full name" />
+              <FormLabel>{t("form.fullName.label")}</FormLabel>
+
+              <TextField
+                {...field}
+                placeholder={t("form.fullName.placeholder")}
+              />
+
               <FormHelperText>
-                {error?.message || "Please enter full name"}
+                {error?.message ? t(error.message) : t("form.fullName.helper")}
               </FormHelperText>
             </FormControl>
           )}
         />
       </Grid>
 
+      {/* National ID */}
       <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="national_id"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>National ID</FormLabel>
-              <TextField {...field} placeholder="Enter national ID" />
+              <FormLabel>{t("form.nationalId.label")}</FormLabel>
+
+              <TextField
+                {...field}
+                placeholder={t("form.nationalId.placeholder")}
+              />
+
               <FormHelperText>
-                {error?.message || "Please enter national ID"}
+                {error?.message
+                  ? t(error.message)
+                  : t("form.nationalId.helper")}
               </FormHelperText>
             </FormControl>
           )}
         />
       </Grid>
 
+      {/* Date of Birth */}
       <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="date_of_birth"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>Date of Birth</FormLabel>
+              <FormLabel>{t("form.dateOfBirth.label")}</FormLabel>
+
               <TextField {...field} type="date" />
+
               <FormHelperText>
-                {error?.message || "Please select date of birth"}
+                {error?.message
+                  ? t(error.message)
+                  : t("form.dateOfBirth.helper")}
               </FormHelperText>
             </FormControl>
           )}
         />
       </Grid>
 
+      {/* Gender */}
       <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="gender"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>Gender</FormLabel>
+              <FormLabel>{t("form.gender.label")}</FormLabel>
+
               <Select {...field} displayEmpty>
                 <MenuItem value="">
-                  <em>Select gender</em>
+                  <em>{t("form.gender.default")}</em>
                 </MenuItem>
                 {GENDER.map((g) => (
                   <MenuItem key={g.id} value={g.id}>
@@ -82,119 +105,144 @@ const PersonalInformations = () => {
                   </MenuItem>
                 ))}
               </Select>
+
               <FormHelperText>
-                {error?.message || "Please select gender"}
+                {error?.message ? t(error.message) : t("form.gender.helper")}
               </FormHelperText>
             </FormControl>
           )}
         />
       </Grid>
 
+      {/* Country */}
       <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="country"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>Country</FormLabel>
+              <FormLabel>{t("form.country.label")}</FormLabel>
+
               <Autocomplete
                 options={COUNTRIES}
                 getOptionLabel={(option) => option.label}
                 onChange={(_, value) => field.onChange(value)}
                 renderInput={(params) => (
-                  <TextField {...params} placeholder="Select country" />
+                  <TextField
+                    {...params}
+                    placeholder={t("form.country.placeholder")}
+                  />
                 )}
               />
+
               <FormHelperText>
-                {error?.message || "Please select country"}
+                {error?.message ? t(error.message) : t("form.country.helper")}
               </FormHelperText>
             </FormControl>
           )}
         />
       </Grid>
 
+      {/* State */}
       <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="state"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>State / Province</FormLabel>
-              <TextField {...field} placeholder="Enter state or province" />
+              <FormLabel>{t("form.state.label")}</FormLabel>
+
+              <TextField {...field} placeholder={t("form.state.placeholder")} />
+
               <FormHelperText>
-                {error?.message || "Please enter state or province"}
+                {error?.message ? t(error.message) : t("form.state.helper")}
               </FormHelperText>
             </FormControl>
           )}
         />
       </Grid>
 
+      {/* City */}
       <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="city"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>City</FormLabel>
-              <TextField {...field} placeholder="Enter city" />
+              <FormLabel>{t("form.city.label")}</FormLabel>
+
+              <TextField {...field} placeholder={t("form.city.placeholder")} />
+
               <FormHelperText>
-                {error?.message || "Please enter your city"}
+                {error?.message ? t(error.message) : t("form.city.helper")}
               </FormHelperText>
             </FormControl>
           )}
         />
       </Grid>
 
+      {/* Address */}
       <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="address"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>Address</FormLabel>
-              <TextField {...field} placeholder="Enter your address" />
+              <FormLabel>{t("form.address.label")}</FormLabel>
+
+              <TextField
+                {...field}
+                placeholder={t("form.address.placeholder")}
+              />
+
               <FormHelperText>
-                {error?.message || "Please enter your address"}
+                {error?.message ? t(error.message) : t("form.address.helper")}
               </FormHelperText>
             </FormControl>
           )}
         />
       </Grid>
 
+      {/* Phone */}
       <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="phone"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>Phone</FormLabel>
+              <FormLabel>{t("form.phone.label")}</FormLabel>
+
               <TextField
                 {...field}
                 inputMode="tel"
-                placeholder="Enter phone number"
+                placeholder={t("form.phone.placeholder")}
               />
+
               <FormHelperText>
-                {error?.message || "Please enter phone number"}
+                {error?.message ? t(error.message) : t("form.phone.helper")}
               </FormHelperText>
             </FormControl>
           )}
         />
       </Grid>
 
+      {/* Email */}
       <Grid size={{ xs: 12, md: 6 }}>
         <Controller
           name="email"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <FormControl error={!!error}>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{t("form.email.label")}</FormLabel>
+
               <TextField
                 {...field}
                 type="email"
-                placeholder="Enter email address"
+                placeholder={t("form.email.placeholder")}
               />
+
               <FormHelperText>
-                {error?.message || "Please enter a valid email"}
+                {error?.message ? t(error.message) : t("form.email.helper")}
               </FormHelperText>
             </FormControl>
           )}

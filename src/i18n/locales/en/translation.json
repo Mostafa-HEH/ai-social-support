@@ -2,10 +2,174 @@
   "common": {
     "next": "Next",
     "previous": "Previous",
-    "submit": "Submit"
+    "submit": "Submit",
+    "errors": {
+      "max": "Description is too long"
+    }
   },
+
+  "steps": {
+    "personalInformation": "Personal Information",
+    "personal": "Personal",
+    "familyFinancial": "Family & Financial Info",
+    "employment": "Employment",
+    "situationDescriptions": "Situation Descriptions",
+    "situation": "Situation"
+  },
+
   "form": {
-    "currentFinancialSituation": "Current Financial Situation",
-    "aiHelp": "AI Help"
+    "fullName": {
+      "label": "Full Name",
+      "placeholder": "Enter full name",
+      "helper": "Please enter full name",
+      "errors": {
+        "min": "Full name must be at least 3 characters"
+      }
+    },
+    "nationalId": {
+      "label": "National ID",
+      "placeholder": "Enter national ID",
+      "helper": "Please enter national ID",
+      "errors": {
+        "min": "National ID is too short",
+        "max": "National ID is too long"
+      }
+    },
+    "dateOfBirth": {
+      "label": "Date of Birth",
+      "helper": "Please select date of birth",
+      "errors": {
+        "required": "Date of birth is required"
+      }
+    },
+    "gender": {
+      "label": "Gender",
+      "default": "Select gender",
+      "helper": "Please select gender",
+      "errors": {
+        "required": "Gender is required"
+      }
+    },
+    "country": {
+      "label": "Country",
+      "placeholder": "Select country",
+      "helper": "Please select country",
+      "errors": {
+        "required": "Country is required"
+      }
+    },
+    "state": {
+      "label": "State / Province",
+      "placeholder": "Enter state or province",
+      "helper": "Please enter state or province",
+      "errors": {
+        "min": "State / Province is required"
+      }
+    },
+    "city": {
+      "label": "City",
+      "placeholder": "Enter city",
+      "helper": "Please enter your city",
+      "errors": {
+        "min": "City is required"
+      }
+    },
+    "address": {
+      "label": "Address",
+      "placeholder": "Enter your address",
+      "helper": "Please enter your address",
+      "errors": {
+        "min": "Address must be at least 10 characters"
+      }
+    },
+    "phone": {
+      "label": "Phone",
+      "placeholder": "Enter phone number",
+      "helper": "Please enter phone number",
+      "errors": {
+        "invalid": "Invalid phone number"
+      }
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter email address",
+      "helper": "Please enter a valid email",
+      "errors": {
+        "invalid": "Invalid email address"
+      }
+    },
+    "maritalStatus": {
+      "label": "Marital Status",
+      "default": "Select marital status",
+      "helper": "Please select marital status",
+      "errors": {
+        "required": "Marital status is required"
+      }
+    },
+    "dependents": {
+      "label": "Number of Dependents",
+      "placeholder": "Enter number of dependents",
+      "helper": "Please enter number of dependents",
+      "errors": {
+        "required": "Number of dependents is required"
+      }
+    },
+    "employmentStatus": {
+      "label": "Employment Status",
+      "default": "Select employment status",
+      "helper": "Please select employment status",
+      "errors": {
+        "required": "Employment status is required"
+      }
+    },
+    "monthlyIncome": {
+      "label": "Monthly Income",
+      "placeholder": "Enter monthly income",
+      "helper": "Please enter monthly income",
+      "errors": {
+        "required": "Monthly income is required"
+      }
+    },
+    "housingStatus": {
+      "label": "Housing Status",
+      "default": "Select housing status",
+      "helper": "Please select housing status",
+      "errors": {
+        "required": "Housing status is required"
+      }
+    },
+    "currentFinancialSituation": {
+      "label": "Current Financial Situation",
+      "placeholder": "Describe your current financial situation",
+      "helper": "Please describe your current financial situation",
+      "aiHelp": "AI Help",
+      "errors": {
+        "min": "Please provide more details about your financial situation"
+      }
+    },
+    "employmentCircumstances": {
+      "label": "Employment Circumstances",
+      "placeholder": "Describe your employment circumstances",
+      "helper": "Please describe your employment circumstances",
+      "aiHelp": "AI Help",
+      "errors": {
+        "min": "Please provide more details about your employment circumstances"
+      }
+    },
+    "reasonForApplying": {
+      "label": "Reason for Applying",
+      "placeholder": "Describe your reason for applying",
+      "helper": "Please explain your reason for applying",
+      "aiHelp": "AI Help",
+      "errors": {
+        "min": "Please explain your reason for applying"
+      }
+    },
+    "common": {
+      "aiHelp": "AI Help",
+      "aiSuggestion": "AI suggestion",
+      "discard": "Discard",
+      "use": "Use"
+    }
   }
 }

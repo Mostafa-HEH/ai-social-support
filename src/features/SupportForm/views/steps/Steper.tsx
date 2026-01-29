@@ -13,8 +13,10 @@ import { useStepper } from "./StepperContext";
 import styles from "../styles/Steper.module.scss";
 import FormActions from "./FormActions";
 import LanguageChange from "../../../../shared/components/LanguageChange/LanguageChange";
+import { useTranslation } from "react-i18next";
 
 const Steper = () => {
+  const { t } = useTranslation();
   const { activeStep, setActiveStep } = useStepper();
   const isMobile = useMediaQuery(useTheme().breakpoints.down("md"));
 
@@ -27,7 +29,7 @@ const Steper = () => {
           {FORM_STEPS.map((x, idx) => {
             return (
               <Step key={x?.id} onClick={() => setActiveStep(idx)}>
-                <StepLabel>{isMobile ? x.shortLabel : x.label}</StepLabel>
+                <StepLabel>{isMobile ? t(x.shortLabel) : t(x.label)}</StepLabel>
               </Step>
             );
           })}
@@ -36,7 +38,7 @@ const Steper = () => {
       <Grid container spacing={32 / 8} className={styles.form}>
         <Grid size={{ xs: 12 }} className={styles.formHeader}>
           <Box component="span" className={styles.stepLabel}>
-            {stepAsset?.label}
+            {t(stepAsset.label)}
           </Box>
         </Grid>
         <Grid size={{ xs: 12 }}>{stepAsset?.component}</Grid>

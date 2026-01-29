@@ -10,8 +10,10 @@ import {
 } from "../../services/prompts";
 import { useState } from "react";
 import TextFieldWithAi from "../../../../shared/components/TextFieldWithAi/TextFieldWithAi";
+import { useTranslation } from "react-i18next";
 
 const Situation = () => {
+  const { t } = useTranslation();
   const [aiPreview, setAiPreview] = useState<
     Partial<Record<keyof UserFormValues, string>>
   >({});
@@ -52,10 +54,14 @@ const Situation = () => {
           control={control}
           render={({ field, fieldState }) => (
             <TextFieldWithAi
-              label="Current Financial Situation"
-              placeholder="Describe your current financial situation"
+              label={t("form.currentFinancialSituation.label")}
+              placeholder={t("form.currentFinancialSituation.placeholder")}
               field={field}
-              error={fieldState.error?.message}
+              error={
+                fieldState.error?.message
+                  ? t(fieldState.error.message)
+                  : undefined
+              }
               aiPreview={aiPreview[field.name]}
               onGenerateAi={() =>
                 generateAiText({
@@ -90,10 +96,14 @@ const Situation = () => {
           control={control}
           render={({ field, fieldState }) => (
             <TextFieldWithAi
-              label="Employment Circumstances"
-              placeholder="Describe your Employment Circumstances"
+              label={t("form.employmentCircumstances.label")}
+              placeholder={t("form.employmentCircumstances.placeholder")}
               field={field}
-              error={fieldState.error?.message}
+              error={
+                fieldState.error?.message
+                  ? t(fieldState.error.message)
+                  : undefined
+              }
               aiPreview={aiPreview[field.name]}
               onGenerateAi={() =>
                 generateAiText({
@@ -128,10 +138,14 @@ const Situation = () => {
           control={control}
           render={({ field, fieldState }) => (
             <TextFieldWithAi
-              label="Reason for Applying"
-              placeholder="Describe your Reason for Applying"
+              label={t("form.reasonForApplying.label")}
+              placeholder={t("form.reasonForApplying.placeholder")}
               field={field}
-              error={fieldState.error?.message}
+              error={
+                fieldState.error?.message
+                  ? t(fieldState.error.message)
+                  : undefined
+              }
               aiPreview={aiPreview[field.name]}
               onGenerateAi={() =>
                 generateAiText({

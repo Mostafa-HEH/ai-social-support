@@ -2,55 +2,49 @@ import z from "zod";
 
 export const UserForm = z.object({
   //! Step 1
-  name: z.string().trim().min(3, "Full name must be at least 3 characters"),
+  name: z.string().min(3, "form.fullName.errors.min"),
   national_id: z
     .string()
-    .trim()
-    .min(6, "National ID is too short")
-    .max(20, "National ID is too long"),
-  date_of_birth: z.string().min(1, "Date of birth is required"),
-  gender: z.string().min(1, "Gender is required"),
-  country: z.any().refine((val) => !!val, {
-    message: "Country is required",
+    .min(6, "form.nationalId.errors.min")
+    .max(20, "form.nationalId.errors.max"),
+  date_of_birth: z.string().min(1, "form.dateOfBirth.errors.required"),
+  gender: z.string().min(1, "form.gender.errors.required"),
+  country: z.any().refine(Boolean, {
+    message: "form.country.errors.required",
   }),
-  state: z.string().trim().min(2, "State / Province is required"),
-  city: z.string().trim().min(2, "City is required"),
-  address: z.string().trim().min(10, "Address must be at least 10 characters"),
-  phone: z
-    .string()
-    .trim()
-    .min(7, "Phone number is too short")
-    .max(15, "Phone number is too long")
-    .regex(/^[0-9+()\s-]+$/, "Invalid phone number"),
-  email: z.string().trim().email("Invalid email address"),
+  state: z.string().min(2, "form.state.errors.min"),
+  city: z.string().min(2, "form.city.errors.min"),
+  address: z.string().min(10, "form.address.errors.min"),
+  phone: z.string().regex(/^[0-9+()\s-]+$/, "form.phone.errors.invalid"),
+  email: z.string().email("form.email.errors.invalid"),
 
   //! Step 2
-  marital_status: z.string().min(1, "Marital status is required"),
+  marital_status: z.string().min(1, "form.maritalStatus.errors.required"),
   dependents: z.string({
-    error: "Number of dependents is required",
+    error: "form.dependents.errors.required",
   }),
-  employment_status: z.string().min(1, "Employment status is required"),
+  employment_status: z.string().min(1, "form.employmentStatus.errors.required"),
   monthly_income: z.string({
-    error: "Monthly income is required",
+    error: "form.monthlyIncome.errors.required",
   }),
-  housing_status: z.string().min(1, "Housing status is required"),
+  housing_status: z.string().min(1, "form.housingStatus.errors.required"),
 
   //! Step 3
   current_financial_situation: z
     .string()
     .trim()
-    .min(30, "Please provide more details about your financial situation")
-    .max(1000, "Description is too long"),
+    .min(30, "form.currentFinancialSituation.errors.min")
+    .max(1000, "form.common.errors.max"),
   employment_circumstances: z
     .string()
     .trim()
-    .min(30, "Please provide more details about your employment circumstances")
-    .max(1000, "Description is too long"),
+    .min(30, "form.employmentCircumstances.errors.min")
+    .max(1000, "form.common.errors.max"),
   reason_for_applying: z
     .string()
     .trim()
-    .min(20, "Please explain your reason for applying")
-    .max(1000, "Description is too long"),
+    .min(20, "form.reasonForApplying.errors.min")
+    .max(1000, "form.common.errors.max"),
 });
 
 export type UserFormValues = z.infer<typeof UserForm>;

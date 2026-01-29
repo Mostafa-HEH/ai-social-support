@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import type { ControllerRenderProps, FieldValues, Path } from "react-hook-form";
 import styles from "./TextFieldWithAi.module.scss";
+import { useTranslation } from "react-i18next";
 
 interface TextFieldWithAiProps<TFieldValues extends FieldValues = FieldValues> {
   label: string;
@@ -32,13 +33,15 @@ const TextFieldWithAi = <TFieldValues extends FieldValues = FieldValues>({
   onAcceptAi,
   onDiscardAi,
 }: TextFieldWithAiProps<TFieldValues>) => {
+  const { t } = useTranslation();
+
   return (
     <FormControl error={!!error}>
       <Box className={styles.label}>
         <FormLabel>{label}</FormLabel>
         {!aiPreview && (
           <Button size="small" onClick={onGenerateAi}>
-            AI Help
+            {t("form.common.aiHelp")}
           </Button>
         )}
       </Box>
@@ -55,14 +58,16 @@ const TextFieldWithAi = <TFieldValues extends FieldValues = FieldValues>({
 
       {aiPreview && (
         <Box className={styles.aiboxContainer}>
-          <Box className={styles.title}>✨ AI suggestion</Box>
+          <Box className={styles.title}>{t("form.common.aiSuggestion")}</Box>
+
           <Box className={styles.content}>{aiPreview}</Box>
+
           <Box className={styles.actions}>
             <Button variant="outlined" size="small" onClick={onDiscardAi}>
-              Discard
+              {t("form.common.discard")}
             </Button>
             <Button variant="contained" size="small" onClick={onAcceptAi}>
-              Use
+              {t("form.common.use")}
             </Button>
           </Box>
         </Box>
