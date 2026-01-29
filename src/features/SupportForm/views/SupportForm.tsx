@@ -8,14 +8,20 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import Steper from "./steps/Steper";
 import { useEffect, useState } from "react";
-import { StepperContext } from "./steps/StepperContext";
+import { StepperContext, type SubmitStatusType } from "./steps/StepperContext";
 import { mockSubmitSupportForm } from "../../../shared/mock";
+import { useTranslation } from "react-i18next";
 
 const DRAFT_KEY = "support-form-draft-v1";
 
 const SupportForm = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatusType>({
+    error: null,
+    success: null,
+  });
+  const { t } = useTranslation();
 
   const form = useForm<UserFormValues>({
     resolver: zodResolver(UserForm),
@@ -58,21 +64,55 @@ const SupportForm = () => {
     try {
       await mockSubmitSupportForm(data);
 
-      // localStorage.removeItem(DRAFT_KEY);
+      localStorage.removeItem(DRAFT_KEY);
 
       console.log("Form submitted successfully");
+      setSubmitStatus((prev) => ({
+        ...prev,
+        success: t("formStatus.success"),
+      }));
     } catch (error) {
       console.error("Submission failed:", error);
+      setSubmitStatus((prev) => ({
+        ...prev,
+        error: t("formStatus.failed"),
+      }));
     } finally {
       setIsSubmitting(false);
+      setTimeout(() => {
+        setSubmitStatus({
+          error: null,
+          success: null,
+        });
+      }, 2000);
     }
   };
 
+  const onError = () => {
+    setSubmitStatus((prev) => ({
+      ...prev,
+      error: t("formStatus.missing"),
+    }));
+
+    setTimeout(() => {
+      setSubmitStatus({
+        error: null,
+        success: null,
+      });
+    }, 2000);
+  };
+
   return (
-    <Stack component="form" onSubmit={handleSubmit(onSubmit)}>
+    <Stack component="form" onSubmit={handleSubmit(onSubmit, onError)}>
       <FormProvider {...form}>
         <StepperContext.Provider
-          value={{ activeStep, setActiveStep, isSubmitting }}
+          value={{
+            activeStep,
+            setActiveStep,
+            isSubmitting,
+            setSubmitStatus,
+            submitStatus,
+          }}
         >
           <Steper />
         </StepperContext.Provider>

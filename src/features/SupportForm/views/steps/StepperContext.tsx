@@ -1,8 +1,15 @@
 import { createContext, useContext } from "react";
 
+export type SubmitStatusType = {
+  error: null | string;
+  success: null | string;
+};
+
 type StepperContextType = {
   activeStep: number;
   setActiveStep: React.Dispatch<React.SetStateAction<number>>;
+  submitStatus: SubmitStatusType;
+  setSubmitStatus: React.Dispatch<React.SetStateAction<SubmitStatusType>>;
   isSubmitting: boolean;
 };
 

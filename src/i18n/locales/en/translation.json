@@ -198,5 +198,10 @@
     "owned": "Owned",
     "rented": "Rented",
     "family": "Living with family"
+  },
+  "formStatus": {
+    "success": "Form submitted successfully",
+    "failed": "Fail to submit.",
+    "missing": "Missing fields"
   }
 }

@@ -135,6 +135,7 @@ const PersonalInformations = () => {
             <FormControl error={!!error}>
               <FormLabel>{t("form.country.label")}</FormLabel>
               <Autocomplete
+                {...field}
                 options={COUNTRIES}
                 getOptionLabel={(option) => t(`countries.${option.code}`)}
                 onChange={(_, value) => field.onChange(value)}

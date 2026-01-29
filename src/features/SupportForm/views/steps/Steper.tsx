@@ -1,9 +1,10 @@
 import {
-  Box,
+  Alert,
   Grid,
   Step,
   StepLabel,
   Stepper,
+  Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
@@ -17,7 +18,7 @@ import { useTranslation } from "react-i18next";
 
 const Steper = () => {
   const { t } = useTranslation();
-  const { activeStep, setActiveStep } = useStepper();
+  const { activeStep, submitStatus } = useStepper();
   const isMobile = useMediaQuery(useTheme().breakpoints.down("md"));
 
   const stepAsset = FORM_STEPS?.[activeStep];
@@ -26,20 +27,28 @@ const Steper = () => {
     <Grid container spacing={32 / 8} className={styles.container}>
       <Grid size={{ xs: 12 }}>
         <Stepper activeStep={activeStep} className={styles.stepper}>
-          {FORM_STEPS.map((x, idx) => {
+          {FORM_STEPS.map((x) => {
             return (
-              <Step key={x?.id} onClick={() => setActiveStep(idx)}>
+              <Step key={x?.id}>
                 <StepLabel>{isMobile ? t(x.shortLabel) : t(x.label)}</StepLabel>
               </Step>
             );
           })}
         </Stepper>
       </Grid>
-      <Grid container spacing={32 / 8} className={styles.form}>
+      <Grid container spacing={2} className={styles.form}>
         <Grid size={{ xs: 12 }} className={styles.formHeader}>
-          <Box component="h3" className={styles.stepLabel}>
+          <Typography component="h3" className={styles.stepLabel}>
             {t(stepAsset.label)}
-          </Box>
+          </Typography>
+        </Grid>
+        <Grid size={{ xs: 12 }}>
+          {submitStatus?.success && (
+            <Alert severity="success">{submitStatus?.success}</Alert>
+          )}
+          {submitStatus?.error && (
+            <Alert severity="error">{submitStatus?.error}</Alert>
+          )}
         </Grid>
         <Grid size={{ xs: 12 }}>{stepAsset?.component}</Grid>
         <Grid size={{ xs: 12 }}>
