@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 const FormActions = () => {
   const { t } = useTranslation();
-  const { setActiveStep, activeStep } = useStepper();
+  const { setActiveStep, activeStep, isSubmitting } = useStepper();
   const lastStep = FORM_STEPS?.length - 1 === activeStep;
 
   const changeStep = ({ variant }: { variant: "next" | "prev" }) => {
@@ -53,8 +53,9 @@ const FormActions = () => {
           type="submit"
           variant="contained"
           aria-label={t("common.submit")}
+          disabled={isSubmitting}
         >
-          {t("common.submit")}
+          {isSubmitting ? t("common.submitting") : t("common.submit")}
         </Button>
       )}
     </Box>

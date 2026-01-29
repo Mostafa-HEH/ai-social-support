@@ -3,6 +3,7 @@ import { createContext, useContext } from "react";
 type StepperContextType = {
   activeStep: number;
   setActiveStep: React.Dispatch<React.SetStateAction<number>>;
+  isSubmitting: boolean;
 };
 
 export const StepperContext = createContext<StepperContextType | undefined>(
