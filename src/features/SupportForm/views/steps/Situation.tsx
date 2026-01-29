@@ -13,7 +13,7 @@ import TextFieldWithAi from "../../../../shared/components/TextFieldWithAi/TextF
 import { useTranslation } from "react-i18next";
 
 const Situation = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [aiPreview, setAiPreview] = useState<
     Partial<Record<keyof UserFormValues, string>>
   >({});
@@ -42,9 +42,14 @@ const Situation = () => {
     });
   };
 
-  const financialPrompt = buildFinancialSituationPrompt(getValues());
-  const circumstancesPrompt = buildEmploymentCircumstancesPrompt(getValues());
-  const applayReason = buildReasonForApplyingPrompt(getValues());
+  const lang = i18n.language === "ar" ? "ar" : "en";
+
+  const financialPrompt = buildFinancialSituationPrompt(getValues(), lang);
+  const circumstancesPrompt = buildEmploymentCircumstancesPrompt(
+    getValues(),
+    lang,
+  );
+  const applayReason = buildReasonForApplyingPrompt(getValues(), lang);
 
   return (
     <Grid
